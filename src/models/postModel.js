@@ -4,18 +4,6 @@ const DataSchema = mongoose.Schema(
     title: { type: String },
     content: { type: String },
     author: { type: String },
-    // image: [
-    //   {
-    //     publicID: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //     url: {
-    //       type: String,
-    //       required: true,
-    //     },
-    //   },
-    // ],
   },
   { timestamps: true, versionKey: false }
 );

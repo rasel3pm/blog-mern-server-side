@@ -1,22 +1,12 @@
 const PostModel = require("../models/postModel");
-const cloudinary = require("../helper/cloudinaryConfig");
-
 //create post
 exports.CreatePost = async (req, res) => {
   try {
     const { title, content, author } = req.body;
-    // cloudinary image hosting connect
-    // let imageCloud = await cloudinary.uploader.upload(req.file.path, {
-    //   folder: "postImage",
-    // });
     const post = await new PostModel({
       title,
       content,
       author,
-      // image: {
-      //   publicID: imageCloud.public_id,
-      //   url: imageCloud.secure_url,
-      // },
     });
     await post.save();
     res.status(200).json({ status: "Post create success", post });
