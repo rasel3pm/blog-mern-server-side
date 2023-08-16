@@ -4,6 +4,7 @@ const DataSchema = mongoose.Schema(
     title: { type: String },
     content: { type: String },
     author: { type: String },
+      image:{type:String}
   },
   { timestamps: true, versionKey: false }
 );

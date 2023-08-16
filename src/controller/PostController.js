@@ -2,11 +2,12 @@ const PostModel = require("../models/postModel");
 //create post
 exports.CreatePost = async (req, res) => {
   try {
-    const { title, content, author } = req.body;
+    const { title, content, author,image } = req.body;
     const post = await new PostModel({
       title,
       content,
       author,
+      image
     });
     await post.save();
     res.status(200).json({ status: "Post create success", post });
