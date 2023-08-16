@@ -25,12 +25,12 @@ app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://serversideblog.vercel.app",
     credentials: true,
   })
 );
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173"); // Replace with your frontend domain
+  res.setHeader("Access-Control-Allow-Origin", "https://serversideblog.vercel.app"); // Replace with your frontend domain
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });

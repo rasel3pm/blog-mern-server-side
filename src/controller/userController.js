@@ -23,7 +23,7 @@ exports.createAccount = async (req, res) => {
     const user = await addUser.save();
     res.status(200).json({ message: "Account create success", user });
   } catch (err) {
-    res.status(404).json({ error: "Something went wrong", err });
+    res.status(400).json({ error: "Something went wrong", err });
   }
 };
 
