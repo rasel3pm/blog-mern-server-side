@@ -55,12 +55,12 @@ exports.loginAccount = async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: "1h" }
         );
-        localStorage.setItem("access_token", token);
-        res.cookie("access_token", token, {
+        // localStorage.setItem("access_token", token);
+        res.status(200).cookie("access_token", token, {
           httpOnly: true,
           sameSite: "lax",
           secure: true,
-        }).json({ message: "Login Success",access_token:token});
+        }).json({ message: "Login Success",token});
       } else {
         res.status(401).json({ message: "wrong email or password" });
       }
