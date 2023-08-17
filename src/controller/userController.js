@@ -55,6 +55,7 @@ exports.loginAccount = async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: "1h" }
         );
+        localStorage.setItem("access_token", token);
         res
           .cookie("access_token", token, {
             httpOnly: true,
