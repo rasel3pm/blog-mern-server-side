@@ -56,13 +56,7 @@ exports.loginAccount = async (req, res) => {
           { expiresIn: "1h" }
         );
         localStorage.setItem("access_token", token);
-        res
-          .cookie("access_token", token, {
-            httpOnly: true,
-            sameSite: "lax",
-            secure: true,
-          })
-          .json({ message: "Login Success", access_token: token });
+        res.status(200).json({ message: "Login Success", access_token: token });
       } else {
         res.status(401).json({ message: "wrong email or password" });
       }
@@ -73,3 +67,8 @@ exports.loginAccount = async (req, res) => {
     res.status(401).json({ message: "wrong email or password--" });
   }
 };
+// .cookie("access_token", token, {
+//   httpOnly: true,
+//   sameSite: "lax",
+//   secure: true,
+// })
