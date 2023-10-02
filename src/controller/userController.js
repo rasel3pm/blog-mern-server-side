@@ -31,10 +31,10 @@ exports.allUser = async (req, res) => {
   try {
     const user = await User.find().sort({ createdAt: -1 });
     if (user) {
-      res.status(202).json({ message: "Success get task", user });
+      res.status(202).json({ message: "Success get user", user });
     }
   } catch (err) {
-    res.status(404).json({ error: "Failed to get all task" });
+    res.status(404).json({ error: "Failed to get user" });
   }
 };
 
@@ -45,7 +45,7 @@ exports.loginAccount = async (req, res) => {
     if (user && user.length > 0) {
       const validPassword = await bcrypt.compare(password, user[0].password);
       if (validPassword) {
-        const token =await jwt.sign(
+        const token = await jwt.sign(
           {
             name: user[0].name,
             email: user[0].email,
@@ -55,12 +55,14 @@ exports.loginAccount = async (req, res) => {
           process.env.JWT_SECRET,
           { expiresIn: "1h" }
         );
-        // localStorage.setItem("access_token", token);
-        res.status(200).cookie("access_token", token, {
-          httpOnly: true,
-          sameSite: "lax",
-          secure: true,
-        }).json({ message: "Login Success",token});
+        res
+          .status(200)
+          .cookie("access_token", token, {
+            httpOnly: true,
+            sameSite: "lax",
+            secure: true,
+          })
+          .json({ message: "Login Success", token });
       } else {
         res.status(401).json({ message: "wrong email or password" });
       }
